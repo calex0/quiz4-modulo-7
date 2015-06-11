@@ -12,7 +12,7 @@
       <input type="text" name="respuesta" value="Responda aquí">
       <input type="submit" value="enviar">
     </form>
-    <footer><a href="https://github.com/calex0/carlos_quiz.git">
+    <footer><a href="https://github.com/calex0/quiz4.git">
     Proyecto en GitHub</a></footer>
   </body>
  </html>

@@ -1,0 +1,2 @@
+DATABASE_URL=SQLITE://:@:/
+DATABASE_STORAGE=quiz.sqlite

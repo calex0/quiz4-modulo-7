@@ -8,7 +8,7 @@
   <body>
     <nav>
       <span><a href="author">Créditos</a></span>
-      <span><a href="/quizes/question">Preguntas</a></span>
+      <span><a href="/quizes/:quizId">Preguntas</a></span>
     </nav>
     <h1>Bienvenido a <%= title %></h1>
     <p>¡El portal donde podrá crear sus juegos!</p>

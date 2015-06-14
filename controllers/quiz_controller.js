@@ -1,6 +1,6 @@
 var models = require('../models/models.js');
 
-<<<<<<< HEAD
+
 
 //GET /quizes/:id
 exports.show = function(req,res){

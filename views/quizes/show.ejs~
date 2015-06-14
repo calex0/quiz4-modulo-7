@@ -1,0 +1,1 @@
+ <form method= "get" action="/quizes/<%= quiz.id %>/answer">

@@ -6,12 +6,12 @@ var models = require('../models/models.js');
 exports.show = function(req,res){
 	models.Quiz.findAll().then(function(quiz){
     res.render('quizes/show',{quiz:quiz});
-=======
+
 //GET /quizes/question
 exports.question = function(req,res){
   models.Quiz.findAll().then(function(quiz){
     res.render('quizes/question',{pregunta: quiz[0].pregunta});
->>>>>>> busquedas
+
   })
 };
 //GET / quizes
@@ -26,15 +26,15 @@ exports.index = function(req,res){
 };
 //GET /quizes/answer
 exports.answer = function(req,res){
-<<<<<<< HEAD
+
   models.Quiz.findAll(req.params.quizId).then(function(quiz){
-=======
+
   models.Quiz.findAll().then(function(quiz){
 
 
   if (req.query.respuesta === quiz[0].respuesta){
     res.render('quizes/answer',{respuesta:'Correcto'});
->>>>>>> busquedas
+
 
 
   if (req.query.respuesta === quiz[0].respuesta){

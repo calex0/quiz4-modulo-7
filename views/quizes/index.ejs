@@ -1,17 +1,8 @@
-<!DOCTYPE html>
-<body>
-<!--<table>
-  <% var i; for (i=0; i < quizes.length; i++) { %>        
-    <tr>
-      <td><a href="/quizes/<%= quizes[i].id %>"><%= quizes[i].pregunta %></a></td>
-     
-  <% } %>
-	</tr>
-</table> -->
+ 
+  <h2>views/index.ejs-funciona bien</h2>
+	<h4>Buscar preguntas</h4>
 
-<!-- <form method="get" action="/quizes/<%=quizes.id%>"> -->
-<!--<form method="get" action="/quizes/"> -->
-<form method="get" action="/quizes">
+<form method="get" action="/quizes/">
 	<input type="text"  name="search" value="texto_a_buscar" />
 	
 	<input type="submit" value="Buscar" />
@@ -19,9 +10,10 @@
 <table>
   <% var i; for (i=0; i < quizes.length; i++) { %>        
     <tr>
-      <td><a href="/quizes/<%= quizes[i].id %>"><%= quizes[i].pregunta %></a></td>
+      		<td><a href="quizes/<%= quizes[i].id %>"><%= quizes[i].pregunta %></a>		
+			</td>
      
   <% } %>
 	</tr>
 </table>
-</body>
+

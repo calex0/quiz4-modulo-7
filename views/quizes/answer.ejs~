@@ -1,17 +1,4 @@
- <!DOCTYPE html>
- <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Quiz</title>
-    <link rel='stylesheets/style.css' />
-  </head>
-  <body>
-  <h2>Quiz: el juego de las preguntas</h2>
-  <p><%=respuesta %>
-		<a href="/quizes/<%= quiz.id %>">Volver</a>
-	</p>
-  <a href="/quizes/:quizId"> Intentelo otra vez </a>
-  <footer><a href="https://github.com/calex0/quiz4-modulo-7.git">
-  Proyecto en GitHub</a></footer>
-  </body>
- </html>
+ <p>
+         <%= respuesta %><p>
+         <a href="/quizes/<%= quiz.id %>">Volver</a>
+ </p

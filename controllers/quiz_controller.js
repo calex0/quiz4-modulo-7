@@ -6,7 +6,7 @@ exports.load = function(req, res, next, quizId){
 	models.Quiz.find({where:{id:Number(quizId)},}).then(
 	//models.Quiz.findAll(quizId).then(
 	//models.Quiz.findAll({where:{id:Number(quizID)},}).then(
-	models.Quiz.find(quizId).then(
+	//models.Quiz.find(quizId).then(
 		function(quiz){
 			if(quiz){
 				req.quiz = quiz;

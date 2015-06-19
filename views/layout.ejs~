@@ -15,18 +15,14 @@
   </head>
 	<body>
 <div id ="page-wrap">
-	<header class ="main" id ="h1">
-		<h2>Quiz<span>: el juego de las preguntas</span></h2>
-	</header>
-	<nav class="main" id="n1" role="navigation">
-	<span><a href="/quizes">Preguntas</a></span>
-	</nav>
+	
+
 	<section class="main" id="s1">
 		<%- body%>
 			</div>
 	</section>
 	<footer><a href="https://github.com/calex0/quiz4-modulo-7.git">
-    Proyecto en GitHub</a></footer>
+    Proyecto Quiz en GitHub</a></footer>
 </div>
 </body>
 </html>

@@ -20,11 +20,7 @@ router.param('quizId', quizController.load);
 
 router.get('/quizes',										quizController.index);
 router.get('/quizes/:quizId(\\d+)', 				quizController.show);
-<<<<<<< HEAD
 router.get('/quizes/:quizId(\\d+)/answer', 	quizController.answer);
-=======
-router.get('/quizes/:quizId(\\d+)/answer', 		quizController.answer);
->>>>>>> origin/master
 
 
 module.exports = router;

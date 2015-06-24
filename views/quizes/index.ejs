@@ -1,5 +1,14 @@
-   <h2>Buscar preguntas</h2>
+<h4>Buscar preguntas</h4>
+
+<form method="get" action="quizes/">
+	<input type="text"  name="search" value="Buscar pregunta" />
 	
+	<input type="submit" value="Buscar" />
+	
+</form>
+
+<tr><td><a href=/quizes/>Volver</a></td></tr>
+
 <table>
   <% var i; for (i=0; i < quizes.length; i++) { %> 
        
@@ -8,10 +17,3 @@
   <% } %>
 	
 </table>
-<form method="get" action="quizes/">
-	<input type="text"  name="search" value="texto_a_buscar" />
-	
-	<input type="submit" value="Buscar" />
-</form>
-
-<tr><td><a href=/quizes/>Volver</a></td></tr>

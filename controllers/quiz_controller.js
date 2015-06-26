@@ -27,9 +27,18 @@ exports.index = function(req,res){
 	 
 	var filtro = req.query.search;
 	var condicion = ('%' + filtro + '%').replace(/ /g,'%');
-  	models.Quiz.findAll({where:["pregunta like ?", condicion],order:'pregunta ASC'}).then(function(quizes){
-    res.render('quizes/index.ejs',{quizes: quizes, errors: []});
-  }).error(function(error) {next(error);});
+		if (req.query.search) {
+		  models.Quiz.findAll({
+			where: ["pregunta like ?", condicion],
+			order: [['pregunta', 'ASC']]}
+			).then(function(quizes) {	
+			res.render('quizes/index', {quizes: quizes});
+		}).catch(function(error) {next(error);});
+		  }else{
+			models.Quiz.findAll().then(function(quizes) {
+				res.render('quizes/index', {quizes: quizes});
+			}).catch(function(error) {next(error);});
+		  }
 };
 
 

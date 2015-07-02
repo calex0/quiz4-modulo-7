@@ -47,10 +47,12 @@ nav span {
    margin-top: 2%;
 }
 
-#ErrorMsg {
+
+nav span { margin: 0px 10px 0px 0px;}
+#ErrorMsgs {
    color: #f61;
    font-size: smaller;
 }
-nav span { margin: 0px 10px 0px 0px;}
 
-#ErrorMsgs { color: #f61; font-size: smaler}
+
+

@@ -17,7 +17,7 @@ exports.load = function(req, res, next, quizId){
 // GET /quizes/:id
 
 exports.show = function(req, res) {
-	res.render('quizes/show', { quiz: req.quiz});
+	res.render('quizes/show', { quiz: req.quiz, errors: []});
 };
 
 
@@ -32,11 +32,11 @@ exports.index = function(req,res){
 			where: ["pregunta like ?", condicion],
 			order: [['pregunta', 'ASC']]}
 			).then(function(quizes) {	
-			res.render('quizes/index', {quizes: quizes});
+			res.render('quizes/index', {quizes: quizes, errors: []});
 		}).catch(function(error) {next(error);});
 		  }else{
 			models.Quiz.findAll().then(function(quizes) {
-				res.render('quizes/index', {quizes: quizes});
+				res.render('quizes/index', {quizes: quizes, errors: []});
 			}).catch(function(error) {next(error);});
 		  }
 };
@@ -49,24 +49,64 @@ exports.answer = function(req,res){
 	  if (req.query.respuesta === req.quiz.respuesta){
 		resultado = 'Correcto';
     }
-    res.render('quizes/answer',{quiz: req.quiz, respuesta: resultado});
+    res.render('quizes/answer',{quiz: req.quiz, respuesta: resultado, errors: []});
     };
 //GET /quizes/new
 exports.new = function(req, res){
 	var quiz = models.Quiz.build( //crea objeto quiz
 		{pregunta:"Pregunta" , respuesta: "Respuesta"}
 	);
-	res.render('quizes/new' , {quiz: quiz});
+	res.render('quizes/new' , {quiz: quiz, errors: []});
 };
 
 // POST /quizes/create
 exports.create = function(req, res){
 	var quiz = models.Quiz.build ( req.body.quiz);
-
+	quiz
+	.validate()
+	.then(
+		function(err){
+			if (err){
+				res.render('quizes/new', { quiz: quiz, errors: []});
+			} else{
 //guarda en BD lpos campos pregunta y respuesta de quiz
-	quiz.save({fields: ["pegunta","respuesta"]}).then(function(){
-		res.redirect('/quizes');
+					quiz
+					.save({fields: ["pegunta","respuesta"]})
+					.then(function(){ res.redirect('/quizes')})
+//res.redirect: Redirección HTTP a lista de preguntas
+			}
+}
+);
+};
 
-})
+// GET quizes/:id/edit
+exports.edit = function(req, res){
+	var quiz = req.quiz; //autoload de onstancia de quiz
+	res.render('quizes/edit', {quiz: quiz, errors: []});
+};
+
+// PUT /quizes/:quizId
+exports.update = function(req, res) {
+  req.quiz.pregunta  = req.body.quiz.pregunta;
+  req.quiz.respuesta = req.body.quiz.respuesta;
+  //req.quiz.tema = req.body.quiz.tema;
+
+  req.quiz
+  .validate()
+  .then(
+    function(err) {
+      if (err) {
+        res.render('quizes/edit', { quiz: req.quiz, errors: err.errors });
+      } else {
+        // save: guarda en DB campos pregunta y respuesta de quiz
+        req.quiz
+        .save({fields: ["pregunta", "respuesta"]})
+        .then(function() {
+            //res.redirect: Redirección HTTP a lista de preguntas
+            res.redirect('/quizes');
+          })
+      }
+    }
+  ).catch(function(error) { next(error); });
 };
 

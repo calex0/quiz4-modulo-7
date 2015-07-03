@@ -3,8 +3,8 @@ var models = require('../models/models.js');
 //Autoload - factoriza el código si ruta incluye :quizId
 exports.load = function(req, res, next, quizId){
 
-	models.Quiz.find({where:{id:Number(quizId)},}).then(
-
+	//models.Quiz.find({where:{id:Number(quizId)},}).then(
+	models.Quiz.find(quizId).then(
 		function(quiz){
 			if(quiz){
 				req.quiz = quiz;
@@ -32,7 +32,7 @@ exports.index = function(req,res){
 			where: ["pregunta like ?", condicion],
 			order: [['pregunta', 'ASC']]}
 			).then(function(quizes) {	
-			res.render('quizes/index', {quizes: quizes, errors: []});
+			res.render('quizes/index.ejs', {quizes: quizes, errors: []});
 		}).catch(function(error) {next(error);});
 		  }else{
 			models.Quiz.findAll().then(function(quizes) {
@@ -59,28 +59,6 @@ exports.new = function(req, res){
 	);
 	res.render('quizes/new' , {quiz: quiz, errors: [] });
 };
-/*
-// POST /quizes/create
-exports.create = function(req, res){
-	var quiz = models.Quiz.build ( req.body.quiz);
-	quiz
-	.validate()
-	.then(
-		function(err){
-			if (err){
-				res.render('quizes/new', { quiz: quiz, errors: []});
-			} else{
-//guarda en BD lpos campos pregunta y respuesta de quiz
-					quiz
-					.save({fields: ["pregunta","respuesta"]})
-					.then(function(){ res.redirect('/quizes');
-					});
-//res.redirect: Redirección HTTP a lista de preguntas
-			}
-}).catch(function(error) { next(error); });
-};
-*/
-
 
 
 // POST /quizes/create
@@ -136,5 +114,7 @@ exports.update = function(req, res) {
 exports.destroy = function(req, res) {
   req.quiz.destroy().then( function() {
     res.redirect('/quizes');
-  }).catch(function(error){next(error);});
+  }).catch(function(error){next(error)});
 };
+
+

@@ -4,4 +4,12 @@
          <input type="submit" value="Enviar" />
  </form>
 
-<tr><td><a href="/quizes/<%= quiz.id %>">Volver</a></td></tr>
+
+
+<p><a href="/quizes/<%= quiz.id %>/comments/new"><button>Nuevo comentario</button></a></p>
+
+
+<p><strong>Comentarios:</strong></p>
+<% for(index in quiz.Comments){ %>	
+		<p>- <%=quiz.Comments[index].texto %></p>
+<% } %>

@@ -4,8 +4,10 @@ var models = require('../models/models.js');
 exports.load = function(req, res, next, quizId){
 
 	//models.Quiz.find({where:{id:Number(quizId)},}).then(
-	models.Quiz.find(quizId).then(
-		function(quiz){
+	models.Quiz.find({
+			where: { id: Number(quizId)},
+			include: [{model: models.Comment}]
+			}).then(function(quiz){
 			if(quiz){
 				req.quiz = quiz;
 				next();
@@ -71,7 +73,7 @@ exports.create = function(req, res) {
 		if (err) {
        		res.render('quizes/new', {quiz: quiz, errors: err.errors});
       	} else {
-        	quiz.save({fields: ["pregunta", "respuesta", "tema"]})
+        	quiz.save({fields: ["pregunta", "respuesta","tema"]})
 			.then( function() { res.redirect('/quizes');
 			})
       	}      // res.redirect: Redirección HTTP a lista de preguntas

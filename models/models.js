@@ -32,9 +32,7 @@ var sequelize = new Sequelize(DB_name,user,pwd,
                     );
 
 //Importar la definicion de la tabla Quiz
-
-
-var Quiz = sequelize.import(path.join(__dirname,'quiz'));
+var Quiz = sequelize.import(path.join(__dirname, 'quiz'));
 
 /*
 //cargar Modelo ORM

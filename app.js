@@ -9,6 +9,7 @@ var methodOverride = require('method-override');
 var session = require('express-session');
 
 var routes = require('./routes/index');
+var sessionController = require('./controllers/session_controller.js');
 
 var app = express();
 
@@ -32,16 +33,6 @@ app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-
-
-
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-    var err = new Error('Not Found');
-    err.status = 404;
-    next(err);
-});
-
 //Helpers dinámicos
 app.use( function(req, res, next) {        
         //guardar el path en session.redir para despues del login
@@ -54,8 +45,18 @@ app.use( function(req, res, next) {
         next();
     }
 );
-
+app.use('/*', sessionController.autoLogout);
 app.use('/', routes);
+
+
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+    var err = new Error('Not Found');
+    err.status = 404;
+    next(err);
+});
+
+
 // error handlers
 
 // development error handler

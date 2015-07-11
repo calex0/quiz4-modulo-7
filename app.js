@@ -29,13 +29,20 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 //app.use(bodyParser.urlencoded());
 app.use(cookieParser('Quiz 2015'));
+
+//Timeout en la sessión en 15 segundos
 app.use(session({
 secret: 'semilla',
 resave: false,
-saveUninitialized: true
+saveUninitialized: true,
+rolling: true,
+cookie: { maxAge: 15000 };
 }));
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
+
+//Timeout en la sessión en 15 segundos
+
 
 
 //Helpers dinámicos
